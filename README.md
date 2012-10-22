@@ -28,10 +28,8 @@ Available Data
 The following data is currently available on the `company` object returned by
 `CompaniesHouse.lookup`
 
-TODO: Use some funky metaprogramming to make these available as human-readable
-method calls, eg `company.name` or `company.registered_address.line_1`.
 
-For now, you can use it like this:
+Call it like this:
 
     company["RegAddress"]["AddressLine1"]
     => "22-25 FINSBURY SQUARE"
@@ -80,3 +78,7 @@ All data:
          ]
       }
     }
+
+
+TODO: Use some funky metaprogramming to make these available as human-readable
+method calls, eg `company.name` or `company.registered_address.line_1`.
