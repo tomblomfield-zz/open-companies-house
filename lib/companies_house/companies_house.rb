@@ -79,5 +79,4 @@ class CompaniesHouse
     data = JSON.parse(response.body)
     @attributes = data["primaryTopic"]
   end
-
 end
