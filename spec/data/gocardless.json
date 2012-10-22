@@ -1,0 +1,44 @@
+{
+   "primaryTopic" : {
+      "CompanyName" : "GOCARDLESS LTD",
+      "CompanyNumber" : "07495895",
+      "RegAddress" : {
+         "AddressLine1" : "22-25 FINSBURY SQUARE",
+         "PostTown" : "LONDON",
+         "Country" : "UNITED KINGDOM",
+         "Postcode" : "EC2A 1DX"
+      },
+      "CompanyCategory" : "Private Limited Company",
+      "CompanyStatus" : "Active",
+      "CountryOfOrigin" : "United Kingdom",
+      "IncorporationDate" : "17/01/2011",
+      "PreviousNames" : [
+         {
+            "CONDate" : "25/08/2011",
+            "CompanyName" : "GROUPAY LIMITED"
+         }
+      ],
+      "Accounts" : {
+         "AccountRefDay" : "31",
+         "AccountRefMonth" : "01",
+         "NextDueDate" : "31/10/2013",
+         "LastMadeUpDate" : "31/01/2012",
+         "AccountCategory" : "TOTAL EXEMPTION SMALL"
+      },
+      "Returns" : {
+         "NextDueDate" : "14/02/2013",
+         "LastMadeUpDate" : "17/01/2012"
+      },
+      "Mortgages" : {
+         "NumMortCharges" : "1",
+         "NumMortOutstanding" : "1",
+         "NumMortPartSatisfied" : "0",
+         "NumMortSatisfied" : "0"
+      },
+      "SICCodes" : {
+         "SicText" : [
+            "62090 - Other information technology service activities"
+         ]
+      }
+   }
+}
