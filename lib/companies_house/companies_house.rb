@@ -76,7 +76,11 @@ class CompaniesHouse
   end
 
   def parse_response(response)
-    data = JSON.parse(response.body)
+    # The response uses HTTP default Latin-1 encoding. Convert it to
+    # valid UTF8 as storing this in Mongo (for example) can cause
+    # problems.
+    body = response.body.encode("UTF-8", "ISO-8859-1")
+    data = JSON.parse(body)
     @attributes = data["primaryTopic"]
   end
 end
