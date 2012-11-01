@@ -1,3 +1,3 @@
-class CompaniesHouse
-  VERSION = '0.1.1'.freeze
+module CompaniesHouse
+  VERSION = '0.2.0'.freeze
 end
