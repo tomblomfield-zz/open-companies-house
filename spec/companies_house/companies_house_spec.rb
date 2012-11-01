@@ -6,6 +6,32 @@ describe CompaniesHouse do
 
   describe ".lookup" do
 
+    context "throws an exception" do
+      it "with a number that's too short" do
+        expect {
+          subject.lookup "123456"
+        }.to raise_exception CompaniesHouse::InvalidRegistration
+      end
+
+      it "that's too long" do
+        expect {
+          subject.lookup "123456789"
+        }.to raise_exception CompaniesHouse::InvalidRegistration
+      end
+
+      it "that's not numeric" do
+        expect {
+          subject.lookup "abcdefgh"
+        }.to raise_exception CompaniesHouse::InvalidRegistration
+      end
+
+      it "that's nil" do
+        expect {
+          subject.lookup nil
+        }.to raise_exception CompaniesHouse::InvalidRegistration
+      end
+    end
+
     context "with a valid request" do
       before do
         url = "http://data.companieshouse.gov.uk/doc/company/07495895.json"

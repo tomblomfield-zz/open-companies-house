@@ -3,6 +3,9 @@ class CompaniesHouse
   class CompanyNotFound < StandardError
   end
 
+  class InvalidRegistration < StandardError
+  end
+
   class ServerError < StandardError
   end
 
@@ -44,13 +47,8 @@ class CompaniesHouse
 
   # Don't call this directly. Instead, use CompaniesHouse.lookup "01234567"
   def initialize(registration_number)
-    @registration_number = registration_number.to_s
+    @registration_number = check_registration(registration_number)
     @attributes = {}
-
-    # Make sure the company registration number is 8 digits by 0-padding
-    if @registration_number.length == 7
-      @registration_number = "0" + @registration_number
-    end
   end
 
   # perform the HTTP request
@@ -62,6 +60,17 @@ class CompaniesHouse
   end
 
   private
+
+  def check_registration(number)
+    number = number.to_s.strip # remove whitespace
+
+    number = "0" + number if number.length == 7 # 0-pad for luck
+
+    msg = "#{number} is not a valid UK company registration number"
+    raise InvalidRegistration.new(msg) unless number =~ /\A[0-9]{8}\z/
+
+    number
+  end
 
   def check_for_errors(response)
     if response.status == 404

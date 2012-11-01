@@ -3,7 +3,6 @@ Open Companies House
 
 Simple ruby wrapper around Companies House Open API
 
-
 Usage:
 =====
 
