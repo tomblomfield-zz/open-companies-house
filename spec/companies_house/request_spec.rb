@@ -18,15 +18,21 @@ describe CompaniesHouse::Request do
         }.to raise_exception CompaniesHouse::InvalidRegistration
       end
 
-      it "that's not numeric" do
-        expect {
-          subject.new "abcdefgh"
-        }.to raise_exception CompaniesHouse::InvalidRegistration
-      end
-
       it "that's nil" do
         expect {
           subject.new nil
+        }.to raise_exception CompaniesHouse::InvalidRegistration
+      end
+
+      it "that contains spaces" do
+        expect {
+          subject.new "1234 ABC"
+        }.to raise_exception CompaniesHouse::InvalidRegistration
+      end
+
+      it "that contains non alphanumeric chars" do
+        expect {
+          subject.new "1234?456"
         }.to raise_exception CompaniesHouse::InvalidRegistration
       end
     end

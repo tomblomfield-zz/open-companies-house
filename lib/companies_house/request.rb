@@ -30,7 +30,7 @@ module CompaniesHouse
       number = "0" + number if number.length == 7 # 0-pad for luck
 
       msg = "#{number} is not a valid UK company registration number"
-      raise InvalidRegistration.new(msg) unless number =~ /\A[0-9]{8}\z/
+      raise InvalidRegistration.new(msg) unless number =~ /\A[A-Z0-9]{8}\z/
 
       number
     end
