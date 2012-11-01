@@ -1,4 +1,4 @@
-class CompaniesHouse
+module CompaniesHouse
 
   class Request
 
