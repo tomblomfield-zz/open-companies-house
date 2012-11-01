@@ -15,6 +15,20 @@ Usage:
     company.sic_code # convenience method
     => "62090"
 
+Caching
+=======
+
+If you'd like to cache your requests, you can configure the gem:
+
+    # file config/initializers/companies_house.rb
+
+    # swap in your own cache here
+    CompaniesHouse.cache = Rails.cache
+
+    # Optional
+    CompaniesHouse.cache_args = { expires_in: 10.minutes }
+
+
 Specs
 =====
 

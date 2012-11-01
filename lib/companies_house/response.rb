@@ -1,0 +1,46 @@
+class CompaniesHouse
+
+  class Response
+
+    def initialize(response)
+      check_for_errors(response)
+      parse_response(response)
+    end
+
+    # Return a SIC code from the ugly hash
+    #
+    # company.sic_code
+    # => "62090"
+    #
+    def sic_code
+      if self["SICCodes"] && self["SICCodes"]["SicText"]
+        self["SICCodes"]["SicText"].first.split[0]
+      end
+    end
+
+    # So that you can call attributes on the companies house object:
+    # company["CompanyName"]
+    def [](key)
+      @attributes[key]
+    end
+
+    private
+
+    def check_for_errors(response)
+      if response.status == 404
+        msg = "Company not found with registration #{@registration_number}"
+        raise CompanyNotFound.new(msg)
+      end
+
+      unless response.status == 200
+        msg = "Companies House Responded with status #{response.status}"
+        raise ServerError.new(msg)
+      end
+    end
+
+    def parse_response(response)
+      data = JSON.parse(response.body)
+      @attributes = data["primaryTopic"]
+    end
+  end
+end
