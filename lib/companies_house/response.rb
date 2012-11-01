@@ -39,7 +39,8 @@ module CompaniesHouse
     end
 
     def parse_response(response)
-      data = JSON.parse(response.body)
+      body = response.body.encode("UTF-8", "ISO-8859-1")
+      data = JSON.parse(body)
       @attributes = data["primaryTopic"]
     end
   end

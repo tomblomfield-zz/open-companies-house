@@ -1,3 +1,5 @@
+.gitignore
 .rvmrc
 .DS_Store
 Gemfile.lock
+*.gem
