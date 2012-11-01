@@ -12,8 +12,8 @@ module CompaniesHouse
 
     def perform
       url = BASE_URI + @registration_number + ".json"
-      request = with_caching { Faraday.get(url) }
-      Response.new(request)
+      response = with_caching { Faraday.get(url) }
+      Response.new(response)
     end
 
     private
