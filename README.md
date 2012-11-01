@@ -3,7 +3,16 @@ Open Companies House
 
 Simple ruby wrapper around Companies House Open API
 
-Usage:
+Installation
+============
+
+In your Gemfile
+
+```ruby
+gem "open-companies-house", "~> 0.2.0", require: 'companies_house'
+```
+
+Usage
 =====
 
 ```ruby
