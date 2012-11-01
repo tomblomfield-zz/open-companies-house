@@ -7,7 +7,6 @@ module CompaniesHouse
     # Don't call this directly. Instead, use CompaniesHouse.lookup "01234567"
     def initialize(registration_number)
       @registration_number = validate(registration_number)
-      @attributes = {}
     end
 
     def perform

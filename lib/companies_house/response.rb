@@ -2,6 +2,8 @@ module CompaniesHouse
 
   class Response
 
+    attr_reader :attributes
+
     def initialize(response)
       check_for_errors(response)
       parse_response(response)

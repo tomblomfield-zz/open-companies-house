@@ -18,6 +18,10 @@ describe CompaniesHouse::Response do
       @response["CompanyName"].should == "GOCARDLESS LTD"
     end
 
+    it "makes raw attributes available as well" do
+      @response.attributes["CompanyName"].should == "GOCARDLESS LTD"
+    end
+
     it "makes SIC code available as a convenience method" do
       @response.sic_code.should == "62090"
     end
