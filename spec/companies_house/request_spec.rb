@@ -37,6 +37,15 @@ describe CompaniesHouse::Request do
       end
     end
 
+    CompaniesHouse::Request::ALLOWED_PREFIXES.each do |prefix|
+      it "allows a company registration number starting with #{prefix}" do
+        prefix = (prefix == '\d\d') ? '07' : prefix
+        company = subject.new "#{prefix}112233"
+        company.instance_variable_get(:@registration_number).
+          should == "#{prefix}112233"
+      end
+    end
+
     it "0-pads 7 digit registration numbers" do
       company = subject.new "7495895"
       company.instance_variable_get(:@registration_number).
