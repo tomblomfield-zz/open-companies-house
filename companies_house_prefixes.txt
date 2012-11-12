@@ -1,0 +1,60 @@
+Companies registered in England and Wales 
+-------------------------------------------------------------------------------- 
+AC - Assurance companies 
+
+BR - UK Establishment of an overseas company 
+
+FC - Overseas companies 
+
+GE - EEIG - European Economic Interest Grouping 
+
+IP - Industrial and Provident Societies 
+
+LP - Limited Partnership 
+
+OC - Limited Liability Partnership 
+
+RC - Incorporated by Royal Charter or Letters Patent. 
+
+SE - Societas Europea - Refer queries to Overseas team 
+
+ZC - Unregistered company (Company registered under an Act other than the Companies Act). 
+
+
+Companies Registered in Scotland 
+-------------------------------------------------------------------------------- 
+SC - Companies Registered under Part 1 of the Companies Act 1985 
+
+SA - Assurance Companies 
+
+SF - Overseas Companies which appear to have a place of business in Scotland 
+
+SL - Limited Partnerships 
+
+SZ - Companies Incorporated under other than Companies Acts 
+
+SP - Industrial and Provident Societies 
+
+SO - Other Companies and LLP's 
+
+SR - Incorporated by Royal Charter or Letters Patent 
+
+
+
+Companies Registered in Northern Ireland 
+--------------------------------------------------------------------------- 
+NI - Companies Registered under Part 1 of the Companies Act (Northern Ireland) 1960 
+
+NA - Assurance Companies 
+
+NF - Overseas Companies which appear to have a place of business in Northern Ireland 
+
+NL - Limited Partnerships 
+
+NZ - Companies Incorporated under other than Companies Acts 
+
+NP - Industrial and Provident Societies 
+
+NO - Other Companies 
+
+NR - Incorporated by Royal Charter or Letters Patent 
