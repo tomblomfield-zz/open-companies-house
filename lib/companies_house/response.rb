@@ -44,6 +44,9 @@ module CompaniesHouse
       body = response.body.encode("UTF-8", "ISO-8859-1")
       data = JSON.parse(body)
       @attributes = data["primaryTopic"]
+    rescue JSON::ParserError=> e
+      error_msg = "Companies house is having some errors: #{response.body}"
+      raise ServerError.new(error_msg)
     end
   end
 end
