@@ -58,4 +58,16 @@ describe CompaniesHouse::Response do
       }.to raise_exception CompaniesHouse::ServerError
     end
   end
+
+  context "when the server returns html" do
+    it "raises a companies house server error" do
+      http_response = stub('Response')
+      http_response.stubs(:body).returns("<html><head></head></html>")
+      http_response.stubs(:status).returns(200)
+
+      expect {
+        subject.new(http_response)
+      }.to raise_error(CompaniesHouse::ServerError)
+    end
+  end
 end
