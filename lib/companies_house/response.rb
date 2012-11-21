@@ -45,7 +45,7 @@ module CompaniesHouse
       data = JSON.parse(body)
       @attributes = data["primaryTopic"]
     rescue JSON::ParserError=> e
-      error_msg = "Companies house is having some errors: #{response.body}"
+      error_msg = "Companies house is having problems: #{response.body}"
       raise ServerError.new(error_msg)
     end
   end
