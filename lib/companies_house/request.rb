@@ -37,7 +37,12 @@ module CompaniesHouse
     def validate(number)
       number = number.to_s.strip # remove whitespace
 
-      number = "0" + number if number.length == 7 # 0-pad for luck
+      # 0-pad 5 or 7 digit registration number
+      if number.match /(\D{2})(\d{5})$/
+        number = $1 + $2.rjust(6,"0")
+      elsif number.match /(\d{7}$)/
+        number = number.rjust(8, "0")
+      end
 
       companies_house_regex = Regexp.
         new("\\A(#{ALLOWED_PREFIXES * '|'})\\d{6}\\z")

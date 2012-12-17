@@ -46,10 +46,28 @@ describe CompaniesHouse::Request do
       end
     end
 
+    it "does not 0-pads 8 digit registration numbers" do
+      company = subject.new "17495895"
+      company.instance_variable_get(:@registration_number).
+        should == "17495895"
+    end
+
     it "0-pads 7 digit registration numbers" do
       company = subject.new "7495895"
       company.instance_variable_get(:@registration_number).
         should == "07495895"
+    end
+
+    it "0-pads 5 digit NI registration numbers" do
+      company = subject.new "NI27768"
+      company.instance_variable_get(:@registration_number).
+        should == "NI027768"
+    end
+
+    it "does not 0-pads 6 digit NI registration numbers" do
+      company = subject.new "NI127768"
+      company.instance_variable_get(:@registration_number).
+        should == "NI127768"
     end
   end
 
