@@ -107,6 +107,3 @@ All data:
   }
 }
 ```
-
-TODO: Use some funky metaprogramming to make these available as human-readable
-method calls, eg `company.name` or `company.registered_address.line_1`.
