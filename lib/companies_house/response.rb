@@ -47,13 +47,13 @@ module CompaniesHouse
       body = response.body.encode("UTF-8", "ISO-8859-1")
       data = JSON.parse(body)
       @attributes = data["primaryTopic"]
-      define_methods
+      define_accessor_methods
     rescue JSON::ParserError=> e
       error_msg = "Companies house is having problems: #{response.body}"
       raise ServerError.new(error_msg)
     end
 
-    def define_methods
+    def define_accessor_methods
     	@struct = build_open_struct(@attributes)
 			@struct.instance_variable_get("@table").keys.map(&:to_s).each do |key|
   			instance_eval <<-"end_eval"
