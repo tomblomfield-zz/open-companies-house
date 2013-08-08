@@ -5,7 +5,7 @@ module CompaniesHouse
 
   class Response
 
-    attr_reader :attributes, :struct
+    attr_reader :attributes
 
     def initialize(response)
       check_for_errors(response)
@@ -29,14 +29,6 @@ module CompaniesHouse
       @attributes[key]
     end
 
-    def method_missing(sym, *args, &block)
-    	if @struct.respond_to?(sym)
-    		@struct.send(sym)
-    	else
-    		super sym, *args, &block
-    	end
-    end
-
     private
 
     def check_for_errors(response)
@@ -55,10 +47,21 @@ module CompaniesHouse
       body = response.body.encode("UTF-8", "ISO-8859-1")
       data = JSON.parse(body)
       @attributes = data["primaryTopic"]
-      @struct = build_open_struct(@attributes)
+      define_methods
     rescue JSON::ParserError=> e
       error_msg = "Companies house is having problems: #{response.body}"
       raise ServerError.new(error_msg)
+    end
+
+    def define_methods
+    	@struct = build_open_struct(@attributes)
+			@struct.instance_variable_get("@table").keys.map(&:to_s).each do |key|
+  			instance_eval <<-"end_eval"
+	  			def #{key}
+	  				@struct.#{key}
+	  			end
+	  		end_eval
+	  	end
     end
 
     def build_open_struct(hash)
@@ -67,5 +70,6 @@ module CompaniesHouse
   			struct.send("#{key.underscore}=", value)
     	end
     end
+
   end
 end
