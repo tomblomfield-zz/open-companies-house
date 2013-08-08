@@ -25,6 +25,14 @@ describe CompaniesHouse::Response do
     it "makes SIC code available as a convenience method" do
       @response.sic_code.should == "62090"
     end
+
+    it "makes attributes accessible as methods on the object body" do
+    	@response.company_name.should == "GOCARDLESS LTD"
+    end
+
+    it "makes nested attributes accessible as chained methods on the object body" do
+    	@response.reg_address.address_line1.should == "22-25 FINSBURY SQUARE"
+    end
   end
 
   context "with a company that doesn't exist" do

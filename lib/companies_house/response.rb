@@ -1,8 +1,11 @@
+require "active_support/core_ext/string/inflections"
+require "ostruct"
+
 module CompaniesHouse
 
   class Response
 
-    attr_reader :attributes
+    attr_reader :attributes, :struct
 
     def initialize(response)
       check_for_errors(response)
@@ -26,6 +29,14 @@ module CompaniesHouse
       @attributes[key]
     end
 
+    def method_missing(sym, *args, &block)
+    	if @struct.respond_to?(sym)
+    		@struct.send(sym)
+    	else
+    		super sym, *args, &block
+    	end
+    end
+
     private
 
     def check_for_errors(response)
@@ -44,9 +55,17 @@ module CompaniesHouse
       body = response.body.encode("UTF-8", "ISO-8859-1")
       data = JSON.parse(body)
       @attributes = data["primaryTopic"]
+      @struct = build_open_struct(@attributes)
     rescue JSON::ParserError=> e
       error_msg = "Companies house is having problems: #{response.body}"
       raise ServerError.new(error_msg)
+    end
+
+    def build_open_struct(hash)
+    	hash.each_with_object(OpenStruct.new) do |(key, value), struct|
+  			value = build_open_struct(value) if value.is_a?(Hash)
+  			struct.send("#{key.underscore}=", value)
+    	end
     end
   end
 end
