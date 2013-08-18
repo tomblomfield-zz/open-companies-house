@@ -27,11 +27,11 @@ describe CompaniesHouse::Response do
     end
 
     it "makes attributes accessible as methods on the object body" do
-    	@response.company_name.should == "GOCARDLESS LTD"
+      @response.company_name.should == "GOCARDLESS LTD"
     end
 
     it "makes nested attributes accessible as chained methods on the object body" do
-    	@response.reg_address.address_line1.should == "22-25 FINSBURY SQUARE"
+      @response.reg_address.address_line1.should == "22-25 FINSBURY SQUARE"
     end
   end
 
