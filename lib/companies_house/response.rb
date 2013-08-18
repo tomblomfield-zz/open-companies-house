@@ -54,21 +54,21 @@ module CompaniesHouse
     end
 
     def define_accessor_methods
-    	@struct = build_open_struct(@attributes)
-			@struct.instance_variable_get("@table").keys.map(&:to_s).each do |key|
-  			instance_eval <<-"end_eval"
-	  			def #{key}
-	  				@struct.#{key}
-	  			end
-	  		end_eval
-	  	end
+      @struct = build_open_struct(@attributes)
+      @struct.instance_variable_get("@table").keys.map(&:to_s).each do |key|
+        instance_eval <<-"end_eval"
+          def #{key}
+            @struct.#{key}
+          end
+        end_eval
+      end
     end
 
     def build_open_struct(hash)
-    	hash.each_with_object(OpenStruct.new) do |(key, value), struct|
-  			value = build_open_struct(value) if value.is_a?(Hash)
-  			struct.send("#{key.underscore}=", value)
-    	end
+      hash.each_with_object(OpenStruct.new) do |(key, value), struct|
+        value = build_open_struct(value) if value.is_a?(Hash)
+        struct.send("#{key.underscore}=", value)
+      end
     end
 
   end

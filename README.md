@@ -70,7 +70,8 @@ company.reg_address.address_line1
 => "22-25 FINSBURY SQUARE"
 ```
 
-Note that for more complicated keys, you may have to check the precise translation between the camelcase hash key and the human readable method.
+Note that for more complicated keys, you may have to check the precise 
+translation between the camelcase hash key and the human readable method.
 
 
 All data:
