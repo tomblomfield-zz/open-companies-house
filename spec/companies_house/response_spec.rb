@@ -18,6 +18,10 @@ describe CompaniesHouse::Response do
       @response["CompanyName"].should == "GOCARDLESS LTD"
     end
 
+    it "makes nested attributes accessible on the object body" do
+      @response["RegAddress"]["AddressLine1"].should == "22-25 FINSBURY SQUARE"
+    end
+
     it "makes raw attributes available as well" do
       @response.attributes["CompanyName"].should == "GOCARDLESS LTD"
     end
@@ -30,7 +34,7 @@ describe CompaniesHouse::Response do
       @response.company_name.should == "GOCARDLESS LTD"
     end
 
-    it "makes nested attributes accessible as chained methods on the object body" do
+    it "makes nested attributes accessible as chained methods" do
       @response.reg_address.address_line1.should == "22-25 FINSBURY SQUARE"
     end
   end
@@ -45,9 +49,8 @@ describe CompaniesHouse::Response do
     end
 
     it "raises an exception" do
-      expect {
-        subject.new(Faraday.get(@url))
-      }.to raise_exception CompaniesHouse::CompanyNotFound
+      expect { subject.new(Faraday.get(@url)) }.
+        to raise_exception CompaniesHouse::CompanyNotFound
     end
   end
 
@@ -61,9 +64,8 @@ describe CompaniesHouse::Response do
     end
 
     it "raises an exception" do
-      expect {
-        subject.new(Faraday.get(@url))
-      }.to raise_exception CompaniesHouse::ServerError
+      expect { subject.new(Faraday.get(@url)) }.
+        to raise_exception CompaniesHouse::ServerError
     end
   end
 
@@ -73,9 +75,8 @@ describe CompaniesHouse::Response do
       http_response.stubs(:body).returns("<html><head></head></html>")
       http_response.stubs(:status).returns(200)
 
-      expect {
-        subject.new(http_response)
-      }.to raise_error(CompaniesHouse::ServerError)
+      expect { subject.new(http_response) }.
+        to raise_error(CompaniesHouse::ServerError)
     end
   end
 end

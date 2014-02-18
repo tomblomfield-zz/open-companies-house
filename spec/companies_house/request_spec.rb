@@ -7,33 +7,28 @@ describe CompaniesHouse::Request do
   describe "#new" do
     context "throws an exception" do
       it "with a number that's too short" do
-        expect {
-          subject.new "123456"
-        }.to raise_exception CompaniesHouse::InvalidRegistration
+        expect { subject.new "123456" }.
+          to raise_exception CompaniesHouse::InvalidRegistration
       end
 
       it "that's too long" do
-        expect {
-          subject.new "123456789"
-        }.to raise_exception CompaniesHouse::InvalidRegistration
+        expect { subject.new "123456789" }.
+          to raise_exception CompaniesHouse::InvalidRegistration
       end
 
       it "that's nil" do
-        expect {
-          subject.new nil
-        }.to raise_exception CompaniesHouse::InvalidRegistration
+        expect { subject.new nil }.
+          to raise_exception CompaniesHouse::InvalidRegistration
       end
 
       it "that contains spaces" do
-        expect {
-          subject.new "1234 ABC"
-        }.to raise_exception CompaniesHouse::InvalidRegistration
+        expect { subject.new "1234 ABC" }.
+          to raise_exception CompaniesHouse::InvalidRegistration
       end
 
       it "that contains non alphanumeric chars" do
-        expect {
-          subject.new "1234?456"
-        }.to raise_exception CompaniesHouse::InvalidRegistration
+        expect { subject.new "1234?456" }.
+          to raise_exception CompaniesHouse::InvalidRegistration
       end
     end
 
