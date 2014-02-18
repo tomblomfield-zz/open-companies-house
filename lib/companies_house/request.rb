@@ -1,5 +1,4 @@
 module CompaniesHouse
-
   class Request
 
     BASE_URI = 'http://data.companieshouse.gov.uk/doc/company/'

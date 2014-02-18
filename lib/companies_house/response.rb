@@ -1,8 +1,4 @@
-require "active_support/core_ext/string/inflections"
-require "ostruct"
-
 module CompaniesHouse
-
   class Response
 
     attr_reader :attributes
@@ -67,9 +63,8 @@ module CompaniesHouse
     def build_open_struct(hash)
       hash.each_with_object(OpenStruct.new) do |(key, value), struct|
         value = build_open_struct(value) if value.is_a?(Hash)
-        struct.send("#{key.underscore}=", value)
+        struct.send("#{Util.underscore(key)}=", value)
       end
     end
-
   end
 end

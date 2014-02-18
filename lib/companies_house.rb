@@ -1,5 +1,6 @@
 require 'faraday'
 require 'json'
+require 'companies_house/util'
 require 'companies_house/request'
 require 'companies_house/response'
 
