@@ -1,3 +1,6 @@
+require "active_support/core_ext/string/inflections"
+require "ostruct"
+
 module CompaniesHouse
 
   class Response
@@ -44,9 +47,29 @@ module CompaniesHouse
       body = response.body.encode("UTF-8", "ISO-8859-1")
       data = JSON.parse(body)
       @attributes = data["primaryTopic"]
+      define_accessor_methods
     rescue JSON::ParserError=> e
       error_msg = "Companies house is having problems: #{response.body}"
       raise ServerError.new(error_msg)
     end
+
+    def define_accessor_methods
+      @struct = build_open_struct(@attributes)
+      @struct.instance_variable_get("@table").keys.map(&:to_s).each do |key|
+        instance_eval <<-"end_eval"
+          def #{key}
+            @struct.#{key}
+          end
+        end_eval
+      end
+    end
+
+    def build_open_struct(hash)
+      hash.each_with_object(OpenStruct.new) do |(key, value), struct|
+        value = build_open_struct(value) if value.is_a?(Hash)
+        struct.send("#{key.underscore}=", value)
+      end
+    end
+
   end
 end

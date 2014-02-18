@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "faraday", "~> 0.8.4"
   gem.add_dependency "json"
+  gem.add_dependency "activesupport"
 
   gem.name = 'open-companies-house'
   gem.summary = "A wrapper around Companies House Open API"

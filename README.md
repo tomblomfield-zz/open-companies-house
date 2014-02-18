@@ -54,12 +54,25 @@ The following data is currently available on the `company` object returned by
 `CompaniesHouse.lookup`
 
 
-Call it like this:
+You can access the data in one of two ways:
+
+1) Directly from the hash:
 
 ```ruby
 company["RegAddress"]["AddressLine1"]
 => "22-25 FINSBURY SQUARE"
 ```
+
+2) As a human-readable method:
+
+```ruby
+company.reg_address.address_line1
+=> "22-25 FINSBURY SQUARE"
+```
+
+Note that for more complicated keys, you may have to check the precise 
+translation between the camelcase hash key and the human readable method.
+
 
 All data:
 
@@ -107,6 +120,3 @@ All data:
   }
 }
 ```
-
-TODO: Use some funky metaprogramming to make these available as human-readable
-method calls, eg `company.name` or `company.registered_address.line_1`.
