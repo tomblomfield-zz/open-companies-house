@@ -1,7 +1,7 @@
 Open Companies House
 ====================
 
-Simple ruby wrapper around Companies House Open API
+Simple ruby wrapper around [Companies House Open API](http://www.companieshouse.gov.uk/about/miscellaneous/URI.shtml)
 
 Installation
 ============
