@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'mocha', '~> 0.10.5'
   gem.add_development_dependency 'webmock', '~> 1.8.8'
 
-  gem.add_dependency "faraday", "~> 0.8.4"
+  gem.add_dependency "faraday"
   gem.add_dependency "json"
 
   gem.name = 'open-companies-house'
